@@ -1,0 +1,13 @@
+---
+# tasks file for aptoma.aws-xray
+- name: Download X-Ray Daemon
+  get_url:
+    url: "https://s3.dualstack.us-east-2.amazonaws.com/aws-xray-assets.us-east-2/xray-daemon/aws-xray-daemon-2.x.deb"
+    dest: /tmp/xray.deb
+    mode: 0755
+
+- name: Install Daemon
+  become: true
+  apt:
+    deb: /tmp/xray.deb
+    state: present

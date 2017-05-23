@@ -1,0 +1,20 @@
+galaxy_info:
+  author: Gunnar Lium
+  description: Install AWS X-Ray Daemon
+  company: Aptoma
+
+  license: MIT
+
+  min_ansible_version: 1.2
+
+  platforms:
+  - name: Ubuntu
+    versions:
+     - xenial
+
+  galaxy_tags:
+    - amazon
+    - aws
+    - xray
+
+dependencies: []
