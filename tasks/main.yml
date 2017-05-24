@@ -11,3 +11,8 @@
   apt:
     deb: /tmp/xray.deb
     state: present
+
+- name: Start Daemon
+  service:
+    name: xray
+    state: started
