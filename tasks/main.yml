@@ -13,6 +13,7 @@
     state: present
 
 - name: Start Daemon
+  become: true
   service:
     name: xray
     state: started
