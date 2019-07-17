@@ -2,7 +2,7 @@
 # tasks file for aptoma.aws-xray
 - name: Download X-Ray Daemon
   get_url:
-    url: "https://s3.dualstack.us-east-2.amazonaws.com/aws-xray-assets.us-east-2/xray-daemon/aws-xray-daemon-2.x.deb"
+    url: https://s3.dualstack.us-east-2.amazonaws.com/aws-xray-assets.us-east-2/xray-daemon/aws-xray-daemon-3.x.deb
     dest: /tmp/xray.deb
     mode: 0755
 
@@ -12,8 +12,19 @@
     deb: /tmp/xray.deb
     state: present
 
+# For whatever reason, the .deb creates a systemd-config which sets the config dir to 0700.
+# This is too strict for the daemon to access its own config file...
+- name: Unbreak systemd settings
+  lineinfile:
+    path: /lib/systemd/system/xray.service
+    regexp: ^ConfigurationDirectoryMode
+    line: ConfigurationDirectoryMode=0755
+  become: true
+
 - name: Start Daemon
   become: true
   systemd:
     name: xray
+    daemon_reload: true
     enabled: true
+    state: restarted
