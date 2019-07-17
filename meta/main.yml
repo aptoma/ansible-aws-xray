@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Gunnar Lium
   description: Install AWS X-Ray Daemon
@@ -5,12 +6,12 @@ galaxy_info:
 
   license: MIT
 
-  min_ansible_version: 1.2
+  min_ansible_version: 2
 
   platforms:
-  - name: Ubuntu
-    versions:
-     - xenial
+    - name: Ubuntu
+      versions:
+        - bionic
 
   galaxy_tags:
     - amazon

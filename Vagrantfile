@@ -5,7 +5,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   vagrant_root = File.dirname(__FILE__)
   ENV['ANSIBLE_ROLES_PATH'] = "#{vagrant_root}/.."
 
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/bionic64"
   # Install python
   config.vm.provision "install python", type: "shell" do |s|
     s.inline = "sudo apt-get -y install python-minimal"
